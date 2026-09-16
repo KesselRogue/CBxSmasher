@@ -1,0 +1,51 @@
+{
+  "name": "cbxsmasher",
+  "version": "0.1.0",
+  "description": "Drag-and-drop CBR/CBZ compressor: re-encodes comic page images to WebP to shrink digital comic files on disk.",
+  "main": "src/main.js",
+  "author": "Jim Nunn",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.1",
+    "electron-store": "^8.2.0",
+    "node-unrar-js": "^2.0.2",
+    "sharp": "^0.35.4"
+  },
+  "build": {
+    "appId": "com.kesselrogue.cbxsmasher",
+    "productName": "CBxSmasher",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/sharp/**/*",
+      "node_modules/@img/**/*",
+      "node_modules/node-unrar-js/**/*.wasm"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';" />
+  <title>CBxSmasher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>CBxSmasher</h1>
+    <p class="subtitle">Shrink your CBR/CBZ comics by re-encoding pages as WebP.</p>
+  </header>
+
+  <main>
+    <section id="dropZone" class="drop-zone">
+      <div class="drop-zone-content">
+        <p class="drop-zone-title">Drag &amp; drop .CBR / .CBZ files here</p>
+        <p class="drop-zone-or">or</p>
+        <button id="browseBtn" type="button">Browse files&hellip;</button>
+      </div>
+    </section>
+
+    <section class="settings">
+      <div class="setting-row">
+        <label for="outputDir">Output folder</label>
+        <div class="output-dir-row">
+          <input id="outputDir" type="text" readonly />
+          <button id="chooseOutputBtn" type="button">Change&hellip;</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <label for="quality">
+          WebP quality
+          <span id="qualityValue">82</span>
+        </label>
+        <input id="quality" type="range" min="1" max="100" value="82" />
+      </div>
+
+      <div class="setting-row checkbox-row">
+        <label>
+          <input id="lossless" type="checkbox" />
+          Lossless (larger files, pixel-perfect pages)
+        </label>
+      </div>
+    </section>
+
+    <section class="queue-section">
+      <div class="queue-header">
+        <h2>Queue</h2>
+        <div class="queue-actions">
+          <button id="clearBtn" type="button" class="secondary">Clear</button>
+          <button id="convertBtn" type="button" disabled>Convert All</button>
+        </div>
+      </div>
+      <ul id="queueList" class="queue-list"></ul>
+      <p id="emptyState" class="empty-state">No files queued yet.</p>
+    </section>
+
+    <footer id="summary" class="summary" hidden></footer>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
